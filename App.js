@@ -8,6 +8,8 @@ import Loginpage from './components/loginPage'
 import SignUp from './components/signUp'
 import Header from './components/Header'
 import SelectCity from './components/selectCity'
+import Bell from './components/bell'
+import UnderConstruction from './components/underConstruction'
 const Stack = createStackNavigator();
 
 export class App extends Component {
@@ -18,8 +20,10 @@ export class App extends Component {
         <Stack.Screen name='Get Started' component={Login} />
         <Stack.Screen name="Login" component={Loginpage} />
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Home" component={Header} />
+        <Stack.Screen options={{headerShown:false}} name="Home" component={Header} />
         <Stack.Screen name="select city" component={SelectCity} />
+        <Stack.Screen name="Notification" component={Bell} />
+        <Stack.Screen name="under construction" component={UnderConstruction} />
       </Stack.Navigator>
      </NavigationContainer>
     
