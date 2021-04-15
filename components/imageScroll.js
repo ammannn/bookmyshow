@@ -23,39 +23,32 @@ export default class ImageScroll extends React.Component {
           // objectFit: 'cover',
           // overflow: 'hidden'
         }}>
-          <Image source={{ uri: this.props.ele.url }} style={{
+          <Image source={{ uri: this.props.ele.imgLink }} style={{
             width: "100%",
-            height: "90%",
-            borderTopLeftRadius: 5,
-            borderTopRightRadius: 5,
+            height: "100%",
+            borderRadius:5
 
           }} />
-          <Text style={{
-            fontSize: 15,
-            backgroundColor: "black",
-            color: "white",
-            width: "100%",
-            borderBottomLeftRadius: 5,
-            borderBottomRightRadius: 5,
-            textAlign: 'center'
-          }}>Thu, 15 Apr onwards</Text>
+         
         </View>
         </TouchableOpacity>
         <View style={{
           flexDirection: "row",
           width: 155,
           flexDirection:'row',
-        //   justifyContent:'center'
+          
+          justifyContent:'flex-start'
         }}>
           <Text style={{
               marginTop:4,
             fontSize: 13,
+            marginLeft:5,
             // fontWeight: 'bold',
             
            
 
 
-          }}>{this.props.ele.h.length < 45 ? this.props.ele.h : this.props.ele.h.slice(0, 45) + "..."}</Text>
+          }}>{this.props.ele.name.length < 45 ? this.props.ele.name : this.props.ele.name.slice(0, 45) + "..."}</Text>
 
         </View>
 

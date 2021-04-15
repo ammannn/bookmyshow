@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, BackHandler} from 'react-native';
+import {View, Text, StyleSheet, BackHandler, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Homecarousel from './homeCarousel';
 import SelectCity from './selectCity';
+import YoutubePlayer from 'react-native-youtube-iframe';
 
 import Video from 'react-native-video';
-import MainRecomainded from './mainRecomainded'
-import HomeStack from './homeStack'
+import MainRecomainded from './mainRecomainded';
+import HomeStack from './homeStack';
 
 export class Header extends Component {
   constructor(props) {
@@ -18,9 +19,8 @@ export class Header extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', function () {
-    
       return true;
     });
   }
@@ -37,6 +37,8 @@ export class Header extends Component {
 
   render() {
     return (
+      <ScrollView
+      showsVerticalScrollIndicator={false}>
       <View>
         {this.state.cityLoad ? (
           <SelectCity selectCity={name => this.selectCityFunction(name)} />
@@ -81,17 +83,30 @@ export class Header extends Component {
                 />
               </View>
             </View>
-         
+
             <Homecarousel />
 
-            <View style ={styles.recomanded}>
-            <MainRecomainded  />
-            <HomeStack navigation={this.props.navigation}/> 
+            <View style={styles.recomanded}>
+              <MainRecomainded />
+              <HomeStack navigation={this.props.navigation} />
+
+              <View style={{
+                marginTop:30
+              }}>
+                <YoutubePlayer
+                  height={300}
+                  loop
+                  mute={true}
+                  play={true}
+                  videoId={'8y1gDf5_TfM'}
+                  
+                />
+              </View>
             </View>
-          
           </View>
         )}
       </View>
+      </ScrollView>
     );
   }
 }
@@ -126,11 +141,9 @@ const styles = StyleSheet.create({
     height: 30,
     marginLeft: 20,
   },
-  recomanded:{
-   marginTop:210
-    
-   
-  }
+  recomanded: {
+    marginTop: 20,
+  },
 });
 
 export default Header;

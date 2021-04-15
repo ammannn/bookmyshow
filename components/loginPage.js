@@ -56,6 +56,7 @@ export class LoginPage extends Component {
           error: true,
           loading: false,
         });
+        this.props.navigation.navigate('Home');
       });
   };
 
@@ -67,7 +68,7 @@ export class LoginPage extends Component {
         }}>
       <View>
         <View>
-          <Text style={styles.headerText}>Login With Mobile Number</Text>
+          <Text style={styles.headerText}>Login With Email</Text>
         </View>
 
         <Text style={styles.mobileNumber}>Email</Text>

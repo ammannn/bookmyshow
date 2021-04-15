@@ -10,7 +10,12 @@ export default class Detail extends React.Component {
     console.log(data)
     return (
       <View >
-       <Text>{data.h}</Text>
+       <Text>Movie name ---{'-->   '}{data.name}</Text>
+       <Text>Description -----{'>  '}{data.description}</Text>
+       <Text>Price -----{'>  '}{data.price}</Text>
+       <Text>Trailer Link -----{'>  '}{data.trailerLink}</Text>
+       <Text>Type -----{'>  '}{data.type}</Text>
+
       </View>
     );
   }

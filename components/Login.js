@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     color: 'grey',
   },
   banner: {
-    marginTop: 230,
+    marginTop: 200,
   },
   signup: {
     marginTop: 50,
