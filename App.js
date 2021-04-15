@@ -11,7 +11,10 @@ import SelectCity from './components/selectCity'
 import Bell from './components/bell'
 import UnderConstruction from './components/underConstruction'
 import Detail from './components/detail'
+import Allmovie from './components/allMovies'
 const Stack = createStackNavigator();
+
+
 
 
 export class App extends Component {
@@ -27,6 +30,7 @@ export class App extends Component {
         <Stack.Screen name="Notification" component={Bell} />
         <Stack.Screen name="under construction" component={UnderConstruction} />
         <Stack.Screen name="detail" component={Detail} />
+        <Stack.Screen name="All Movies" component={Allmovie} />
       </Stack.Navigator>
      </NavigationContainer>
     

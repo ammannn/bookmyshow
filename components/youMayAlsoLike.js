@@ -10,18 +10,18 @@ import {
 import ImageScroll from './imageScroll';
 import axios from 'axios';
 
-export default class EntertainmentBox extends React.Component {
+export default class YouMayAlsoLike extends React.Component {
   state = {
     data: [],
   };
 
   componentDidMount() {
     axios
-      .get('https://bookmyshow-clone.herokuapp.com/show/movie/entertainment')
+      .get('https://bookmyshow-clone.herokuapp.com/show/movie/popular')
       .then(response => {
         console.log('recommanded----->', response.data.data);
         this.setState({
-            data:response.data.data
+          data: response.data.data,
         });
       })
       .catch(error => console.log('error hai recomanded me'));
@@ -46,10 +46,10 @@ export default class EntertainmentBox extends React.Component {
                 fontWeight: 'bold',
                 letterSpacing: 0.5,
               }}>
-              Best of Entertainment
+              You May Also Like
             </Text>
             <Text
-            onPress={() => this.props.navigation.navigate('All Movies')}
+              onPress={() => this.props.navigation.navigate('All Movies')}
               style={{
                 color: 'red',
               }}>

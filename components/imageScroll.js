@@ -35,8 +35,7 @@ export default class ImageScroll extends React.Component {
         <View style={{
           flexDirection: "row",
           width: 155,
-          flexDirection:'row',
-          
+          flexDirection:'row',        
           justifyContent:'flex-start'
         }}>
           <Text style={{

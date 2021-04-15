@@ -59,6 +59,7 @@ export class Header extends Component {
                 </View>
                 <View style={styles.icons}>
                   <Icon
+                  onPress ={()=>this.props.navigation.navigate('All Movies')}
                     style={styles.navIcon}
                     name="search"
                     size={25}

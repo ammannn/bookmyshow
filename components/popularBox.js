@@ -21,7 +21,7 @@ export default class PopularBox extends React.Component {
       .then(response => {
         console.log('recommanded----->', response.data.data);
         this.setState({
-            data:response.data.data
+          data: response.data.data,
         });
       })
       .catch(error => console.log('error hai recomanded me'));
@@ -49,6 +49,7 @@ export default class PopularBox extends React.Component {
               Popular Movies
             </Text>
             <Text
+              onPress={() => this.props.navigation.navigate('All Movies')}
               style={{
                 color: 'red',
               }}>
