@@ -12,9 +12,9 @@ import Bell from './components/bell'
 import UnderConstruction from './components/underConstruction'
 import Detail from './components/detail'
 import Allmovie from './components/allMovies'
+import Profile from './components/profile'
+
 const Stack = createStackNavigator();
-
-
 
 
 export class App extends Component {
@@ -31,6 +31,10 @@ export class App extends Component {
         <Stack.Screen name="under construction" component={UnderConstruction} />
         <Stack.Screen name="detail" component={Detail} />
         <Stack.Screen name="All Movies" component={Allmovie} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="header" component={Header} />
+
+     
       </Stack.Navigator>
      </NavigationContainer>
     

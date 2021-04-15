@@ -6,8 +6,11 @@ import SelectCity from './selectCity';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import PopularBox from './popularBox';
 import EntertainmentBox from './entertainmentBox';
+import TabMain from './TabMain'
+
 
 import HomeStack from './homeStack';
+
 
 export class Header extends Component {
   constructor(props) {
@@ -37,6 +40,8 @@ export class Header extends Component {
 
   render() {
     return (
+      <View style={{flex:0.91}}>
+        <View >
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           {this.state.cityLoad ? (
@@ -59,7 +64,7 @@ export class Header extends Component {
                 </View>
                 <View style={styles.icons}>
                   <Icon
-                  onPress ={()=>this.props.navigation.navigate('All Movies')}
+                    onPress={() => this.props.navigation.navigate('All Movies')}
                     style={styles.navIcon}
                     name="search"
                     size={25}
@@ -106,10 +111,17 @@ export class Header extends Component {
                 <PopularBox navigation={this.props.navigation} />
                 <EntertainmentBox navigation={this.props.navigation} />
               </View>
+            
             </View>
           )}
         </View>
       </ScrollView>
+      </View>
+      <View style={{flex:0.09}}>
+        <TabMain navigation = {this.props.navigation}/>
+
+      </View>
+      </View>
     );
   }
 }

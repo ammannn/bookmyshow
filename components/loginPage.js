@@ -12,6 +12,8 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import axios from 'axios';
 
+
+
 export class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -41,12 +43,13 @@ export class LoginPage extends Component {
         email: this.state.email,
         password: this.state.password,
       })
-      .then(response => {
+      .then(  response => {
         console.log('logged in');
         this.setState({
           error: false,
           loading: false,
         });
+      
 
         this.props.navigation.navigate('Home');
       })

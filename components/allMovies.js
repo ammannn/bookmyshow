@@ -10,6 +10,7 @@ import {
   TextInput,
 } from 'react-native';
 import ImageScroll from './imageScroll';
+import TabMain from './TabMain';
 import axios from 'axios';
 
 export default class AllMovie extends React.Component {
@@ -33,7 +34,7 @@ export default class AllMovie extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex: 0.91}}>
         <View style={styles.container}>
           <View
             style={{
@@ -48,11 +49,13 @@ export default class AllMovie extends React.Component {
               onChangeText={search =>
                 this.setState({search: search}, () => {
                   const x = this.state.data.filter(data => {
-                    return data.name.toLowerCase().includes(search.toLowerCase());
+                    return data.name
+                      .toLowerCase()
+                      .includes(search.toLowerCase());
                   });
                   this.setState({
-                      filter:x
-                  })
+                    filter: x,
+                  });
                 })
               }
               style={styles.inputBox}
@@ -71,12 +74,17 @@ export default class AllMovie extends React.Component {
             />
           </View>
         </View>
+
+        <View style={{flex: 0.09}}>
+          <TabMain navigation={this.props.navigation} />
+        </View>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
+    height: '100%',
     backgroundColor: 'rgb(242, 242, 242)',
     flexDirection: 'column',
     // justifyContent:'center',
