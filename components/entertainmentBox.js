@@ -10,14 +10,14 @@ import {
 import ImageScroll from './imageScroll';
 import axios from 'axios';
 
-export default class HomeStack extends React.Component {
+export default class EntertainmentBox extends React.Component {
   state = {
     data: [],
   };
 
   componentDidMount() {
     axios
-      .get('https://bookmyshow-clone.herokuapp.com/show/movie/recommended')
+      .get('https://bookmyshow-clone.herokuapp.com/show/movie/entertainment')
       .then(response => {
         console.log('recommanded----->', response.data.data);
         this.setState({
@@ -46,7 +46,7 @@ export default class HomeStack extends React.Component {
                 fontWeight: 'bold',
                 letterSpacing: 0.5,
               }}>
-              Recommended Movies
+              Best of Entertainment
             </Text>
             <Text
               style={{

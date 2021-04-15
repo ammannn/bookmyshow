@@ -4,9 +4,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Homecarousel from './homeCarousel';
 import SelectCity from './selectCity';
 import YoutubePlayer from 'react-native-youtube-iframe';
+import PopularBox from './popularBox';
+import EntertainmentBox from './entertainmentBox';
 
-import Video from 'react-native-video';
-import MainRecomainded from './mainRecomainded';
 import HomeStack from './homeStack';
 
 export class Header extends Component {
@@ -37,75 +37,77 @@ export class Header extends Component {
 
   render() {
     return (
-      <ScrollView
-      showsVerticalScrollIndicator={false}>
-      <View>
-        {this.state.cityLoad ? (
-          <SelectCity selectCity={name => this.selectCityFunction(name)} />
-        ) : (
-          <View>
-            {}
-            <View style={styles.header}>
-              <View>
-                <Text style={styles.textNav1}>It All Starts Here</Text>
-                <Text
-                  onPress={() =>
-                    this.setState({
-                      cityLoad: true,
-                    })
-                  }
-                  style={styles.textNav}>
-                  {this.state.city} {'>'}
-                </Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View>
+          {this.state.cityLoad ? (
+            <SelectCity selectCity={name => this.selectCityFunction(name)} />
+          ) : (
+            <View>
+              {}
+              <View style={styles.header}>
+                <View>
+                  <Text style={styles.textNav1}>It All Starts Here</Text>
+                  <Text
+                    onPress={() =>
+                      this.setState({
+                        cityLoad: true,
+                      })
+                    }
+                    style={styles.textNav}>
+                    {this.state.city} {'>'}
+                  </Text>
+                </View>
+                <View style={styles.icons}>
+                  <Icon
+                    style={styles.navIcon}
+                    name="search"
+                    size={25}
+                    color="white"
+                  />
+                  <Icon
+                    onPress={() =>
+                      this.props.navigation.navigate('Notification')
+                    }
+                    style={styles.navIcon}
+                    name="bell"
+                    size={25}
+                    color="white"
+                  />
+                  <Icon
+                    onPress={() =>
+                      this.props.navigation.navigate('under construction')
+                    }
+                    style={styles.navIcon}
+                    name="qrcode"
+                    size={25}
+                    color="white"
+                  />
+                </View>
               </View>
-              <View style={styles.icons}>
-                <Icon
-                  style={styles.navIcon}
-                  name="search"
-                  size={25}
-                  color="white"
-                />
-                <Icon
-                  onPress={() => this.props.navigation.navigate('Notification')}
-                  style={styles.navIcon}
-                  name="bell"
-                  size={25}
-                  color="white"
-                />
-                <Icon
-                  onPress={() =>
-                    this.props.navigation.navigate('under construction')
-                  }
-                  style={styles.navIcon}
-                  name="qrcode"
-                  size={25}
-                  color="white"
-                />
+
+              <Homecarousel />
+
+              <View style={styles.recomanded}>
+                <HomeStack navigation={this.props.navigation} />
+
+                <View
+                  style={{
+                    marginTop: 30,
+                  }}>
+                  <YoutubePlayer
+                    height={209}
+                    loop
+                    mute={true}
+                    play={true}
+                    videoId={'8y1gDf5_TfM'}
+                  />
+                </View>
+                <PopularBox navigation={this.props.navigation} />
+                <EntertainmentBox navigation={this.props.navigation} />
               </View>
             </View>
-
-            <Homecarousel />
-
-            <View style={styles.recomanded}>
-              <MainRecomainded />
-              <HomeStack navigation={this.props.navigation} />
-
-              <View style={{
-                marginTop:30
-              }}>
-                <YoutubePlayer
-                  height={300}
-                  loop
-                  mute={true}
-                  play={true}
-                  videoId={'8y1gDf5_TfM'}
-                  
-                />
-              </View>
-            </View>
-          </View>
-        )}
-      </View>
+          )}
+        </View>
       </ScrollView>
     );
   }
