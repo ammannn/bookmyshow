@@ -21,12 +21,24 @@ export class Login extends Component {
             </Text>
           </View>
         </View>
+        <View style={styles.signup}>
+          <Text style={styles.sign}>OR don't have a account?</Text>
+          <Text
+            onPress={() => this.props.navigation.navigate('SignUp')}
+            style={styles.signupText}>
+            {' '}
+            SignUp
+          </Text>
+          <Text style={styles.sign}></Text>
+        </View>
+
         <Image
+          style={styles.banner}
           source={{
             uri:
               'https://in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120/lead-in-v3-collection-202102040828.png',
-              width:'100%',
-              height:35
+            width: '100%',
+            height: 38,
           }}
         />
 
@@ -90,11 +102,25 @@ const styles = StyleSheet.create({
   },
   agree: {
     position: 'absolute',
-    top: '210%',
+    top: '102%',
     left: 30,
     color: 'grey',
   },
   agreeText: {
+    color: 'grey',
+  },
+  banner: {
+    marginTop: 230,
+  },
+  signup: {
+    marginTop: 50,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  signupText: {
+    color: 'blue',
+  },
+  sign: {
     color: 'grey',
   },
 });

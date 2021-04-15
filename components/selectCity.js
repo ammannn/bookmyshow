@@ -1,9 +1,46 @@
 import React, {Component} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {color} from 'react-native-reanimated';
+import axios from 'axios';
+
+
+
 
 export class SelectCity extends Component {
+constructor(props) {
+  super(props)
+
+  this.state = {
+     cities:[]
+  }
+}
+
+componentDidMount(){
+  axios.get('https://bookmyshow-clone.herokuapp.com/city')
+  .then(data=>{
+    console.log('-->city data',data.data.data)
+    this.setState({
+      cities:data.data.data
+    },()=>console.log('state hai', this.state.cities))
+  })
+  .catch(error=>console.log('city me error hai'))
+
+}
+
+
+
   render() {
+    const cityBody = this.state.cities.map(city=>{
+      return <View onTouchStart={()=>this.props.selectCity(city.name)} key={city.name} style={styles.cityView}>
+            <Image 
+              style={styles.cityImage}
+              source={{uri:city.imgLink}}
+              
+            />
+            <Text  style={styles.city}>{city.name}</Text>
+            
+       </View>
+    })
     return (
       <View style={styles.SelectCity}>
         <View style={styles.popularCitiesTextView}>
@@ -11,83 +48,9 @@ export class SelectCity extends Component {
         </View>
 
         <View style={styles.mainCity}>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
-          <View style={styles.cityView}>
-            <Image
-              style={styles.cityImage}
-              source={require('./images/cities/mumbai.png')}
-            />
-            <Text style={styles.city}>Mumbai</Text>
-          </View>
+          
+          {cityBody}
+          
         </View>
       </View>
     );

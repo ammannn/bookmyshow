@@ -1,6 +1,14 @@
 import {forModalPresentationIOS} from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators';
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  ActivityIndicator,
+  Image
+} from 'react-native';
 import axios from 'axios';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
@@ -14,13 +22,18 @@ export class SignUp extends Component {
       password: '',
       confirmPassword: '',
       passwordMatchError: false,
+      loading: false,
     };
   }
 
   createAccount = () => {
+    this.setState({
+      loading: true,
+    });
     if (this.state.password !== this.state.confirmPassword) {
       this.setState({
         passwordMatchError: true,
+        loading: false,
       });
     } else {
       this.setState({
@@ -33,12 +46,19 @@ export class SignUp extends Component {
           email: this.state.email,
           password: this.state.password,
         })
-        .then(function (response) {
+        .then(response => {
           console.log('passed');
           // console.log(response);
+          this.setState({
+            loading: false,
+          });
+          this.props.navigation.navigate('Home');
         })
-        .catch(function (error) {
+        .catch(error => {
           console.log(error);
+          this.setState({
+            loading: false,
+          });
         });
     }
   };
@@ -51,6 +71,12 @@ export class SignUp extends Component {
         }}>
         <View>
           <View>
+            <View style={styles.bookmyshow}>
+              <Image
+                style={styles.bookmyshowlogo}
+                source={require('./images/bookmyshow.png')}
+              />
+            </View>
             <Text style={styles.mobileNumber}>Name</Text>
             <View style={styles.Input}>
               <TextInput
@@ -101,12 +127,20 @@ export class SignUp extends Component {
           </View>
 
           <View style={styles.continueBtnView}>
-            <Button
-              onPress={() => this.createAccount()}
-              color="red"
-              style={styles.continueBtn}
-              title="Register"
-            />
+            {this.state.loading ? (
+              <ActivityIndicator
+                style={{padding: 16.5}}
+                size="large"
+                color="#ed5a6b"
+              />
+            ) : (
+              <Button
+                onPress={() => this.createAccount()}
+                color="red"
+                style={styles.continueBtn}
+                title="Register"
+              />
+            )}
           </View>
         </View>
       </KeyboardAwareScrollView>
@@ -122,7 +156,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   mobileNumber: {
-    marginTop: 40,
+    marginTop: 25,
     marginLeft: 22,
     marginBottom: 5,
     color: 'grey',
@@ -149,7 +183,7 @@ const styles = StyleSheet.create({
     height: '45%',
     left: '5%',
     height: 70,
-    marginTop: '30%',
+    marginTop: '20%',
   },
   continueBtn: {
     height: '45%',
@@ -158,6 +192,16 @@ const styles = StyleSheet.create({
   incorrect: {
     marginLeft: 20,
     color: 'red',
+  },
+  bookmyshow: {
+    marginTop: 20,
+   
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  bookmyshowlogo: {
+    width: '60%',
+    height: 50,
   },
 });
 

@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  ActivityIndicator,
+  Image,
+} from 'react-native';
+
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import axios from 'axios';
 
 export class LoginPage extends Component {
@@ -10,6 +20,7 @@ export class LoginPage extends Component {
       email: '',
       password: '',
       error: false,
+      loading: false,
     };
   }
 
@@ -18,6 +29,9 @@ export class LoginPage extends Component {
   };
 
   CheckLogin = () => {
+    this.setState({
+      loading: true,
+    });
     console.log('here');
     console.log(this.state.email);
     console.log(this.state.password);
@@ -31,19 +45,26 @@ export class LoginPage extends Component {
         console.log('logged in');
         this.setState({
           error: false,
+          loading: false,
         });
+
         this.props.navigation.navigate('Home');
       })
       .catch(error => {
         console.log('error in logging in');
         this.setState({
           error: true,
+          loading: false,
         });
       });
   };
 
   render() {
     return (
+      <KeyboardAwareScrollView
+        innerRef={ref => {
+          this.scroll = ref;
+        }}>
       <View>
         <View>
           <Text style={styles.headerText}>Login With Mobile Number</Text>
@@ -80,14 +101,7 @@ export class LoginPage extends Component {
         {/* <View style={styles.continueBtnView}>
           <Button onPress={()=>this.props.navigation.navigate('SignUp')} color="red" style={styles.continueBtn} title="sadsd" />
         </View> */}
-        <View style={styles.continueBtnView}>
-          <Button
-            onPress={() => this.CheckLogin()}
-            color="red"
-            style={styles.continueBtn}
-            title="Continue"
-          />
-        </View>
+       
 
         <View style={styles.signup}>
           <Text style={styles.sign}>---- OR don't have a account?</Text>
@@ -99,7 +113,30 @@ export class LoginPage extends Component {
           </Text>
           <Text style={styles.sign}> ----</Text>
         </View>
+        <View style={styles.bookmyshow}>
+          <Image
+            style={styles.bookmyshowlogo}
+            source={require('./images/bookmyshow.png')}
+          />
+        </View>
+        <View style={styles.continueBtnView}>
+          {this.state.loading ? (
+            <ActivityIndicator
+              style={{padding: 16.5}}
+              size="large"
+              color="#ed5a6b"
+            />
+          ) : (
+            <Button
+              onPress={() => this.CheckLogin()}
+              color="red"
+              style={styles.continueBtn}
+              title="Continue"
+            />
+          )}
+        </View>
       </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -138,12 +175,12 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   continueBtnView: {
-    position: 'absolute',
+
     width: '90%',
     height: '45%',
     left: '5%',
     height: 70,
-    top: '155%',
+    marginTop:30
   },
   continueBtn: {
     height: '45%',
@@ -163,6 +200,17 @@ const styles = StyleSheet.create({
   incorrect: {
     marginLeft: 20,
     color: 'red',
+  },
+  bookmyshow: {
+    marginTop: 80,
+    marginBottom: 10,
+   
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  bookmyshowlogo: {
+    width: '80%',
+    height: 70,
   },
 });
 

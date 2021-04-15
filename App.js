@@ -10,7 +10,9 @@ import Header from './components/Header'
 import SelectCity from './components/selectCity'
 import Bell from './components/bell'
 import UnderConstruction from './components/underConstruction'
+import Detail from './components/detail'
 const Stack = createStackNavigator();
+
 
 export class App extends Component {
   render() {
@@ -24,6 +26,7 @@ export class App extends Component {
         <Stack.Screen name="select city" component={SelectCity} />
         <Stack.Screen name="Notification" component={Bell} />
         <Stack.Screen name="under construction" component={UnderConstruction} />
+        <Stack.Screen name="detail" component={Detail} />
       </Stack.Navigator>
      </NavigationContainer>
     
