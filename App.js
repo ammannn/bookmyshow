@@ -32,7 +32,7 @@ export class App extends Component {
         <Stack.Screen name="detail" component={Detail} />
         <Stack.Screen name="All Movies" component={Allmovie} />
         <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="header" component={Header} />
+        <Stack.Screen options={{headerShown:false}} name="header" component={Header} />
 
      
       </Stack.Navigator>

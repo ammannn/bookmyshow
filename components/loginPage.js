@@ -11,6 +11,7 @@ import {
 
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -43,8 +44,16 @@ export class LoginPage extends Component {
         email: this.state.email,
         password: this.state.password,
       })
-      .then(  response => {
+      .then( async response => {
+        console.log('login data response----->',response.data.data.name)
         console.log('logged in');
+        try {
+          await AsyncStorage.setItem('name', response.data.data.name)
+          await AsyncStorage.setItem('email', this.state.email)
+          console.log('data saved to local storage')
+        } catch (e) {
+          console.log('saving error');
+        }
         this.setState({
           error: false,
           loading: false,
@@ -59,7 +68,7 @@ export class LoginPage extends Component {
           error: true,
           loading: false,
         });
-        this.props.navigation.navigate('Home');
+       
       });
   };
 

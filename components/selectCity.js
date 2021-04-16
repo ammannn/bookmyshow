@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
-import {color} from 'react-native-reanimated';
+import {View, Text, Image, StyleSheet, TextInput} from 'react-native';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
 
@@ -11,7 +12,8 @@ constructor(props) {
   super(props)
 
   this.state = {
-     cities:[]
+     cities:[],
+     filter:[]
   }
 }
 
@@ -20,6 +22,7 @@ componentDidMount(){
   .then(data=>{
     console.log('-->city data',data.data.data)
     this.setState({
+      filter:data.data.data,
       cities:data.data.data
     },()=>console.log('state hai', this.state.cities))
   })
@@ -43,6 +46,48 @@ componentDidMount(){
     })
     return (
       <View style={styles.SelectCity}>
+         <View
+            style={{
+              width: '95%',
+              height: 50,
+              marginTop: 40,
+              marginBottom: 10,
+              borderWidth:0.5,
+              borderColor:'grey',
+              borderRadius:10,
+              flexDirection:'row',
+              alignItems:'center',
+              marginLeft:7
+
+              
+            }}>
+           <Icon
+            style={{
+              marginLeft:12,
+              marginRight: 5,
+
+            }}
+            name="search"
+            size={17}
+            color="grey"
+          />
+            <TextInput  style={{width:"100%"}}
+              placeholder="search"
+              onChangeText={search =>
+                this.setState({search: search}, () => {
+                  const x = this.state.filter.filter(data => {
+                    return data.name
+                      .toLowerCase()
+                      .includes(search.toLowerCase());
+                  });
+                  this.setState({
+                    cities: x,
+                  });
+                })
+              }
+              style={styles.inputBox}
+            />
+          </View>
         <View style={styles.popularCitiesTextView}>
           <Text style={styles.popularCitiesText}>POPULAR CITIES</Text>
         </View>

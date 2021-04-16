@@ -54,7 +54,7 @@ export class Profile extends Component {
   render() {
     return (
       <View style={{flex: 0.91}}>
-        <View style={{height: '100%', flexDirection: 'row'}}>
+        <View style={{height: '100%', flexDirection: 'row',justifyContent:'space-around'}}>
           <Icon
             style={{
               marginLeft: 10,
@@ -64,7 +64,7 @@ export class Profile extends Component {
             size={80}
             color="black"
           />
-          <View style={{marginLeft: 20, flexDirection: 'column'}}>
+          <View style={{ flexDirection: 'column'}}>
             <Text style={{marginTop: 20, fontSize: 30, fontWeight: 'bold'}}>
               {this.state.user}
             </Text>
@@ -74,7 +74,7 @@ export class Profile extends Component {
           </View>
           <TouchableOpacity onPress={() => this.logout()}>
             <Icon
-              style={{marginLeft: 90, marginTop: 25}}
+              style={{marginLeft: 10, marginTop: 25}}
               name="sign-out"
               size={50}
               color="blue"

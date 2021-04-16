@@ -118,7 +118,7 @@ export class Header extends Component {
       </ScrollView>
       </View>
       <View style={{flex:0.09}}>
-        <TabMain navigation = {this.props.navigation}/>
+      {this.state.cityLoad?null: <TabMain navigation = {this.props.navigation}/>} 
 
       </View>
       </View>

@@ -8,10 +8,14 @@ import {
   ScrollView,
   FlatList,
   TextInput,
+  
 } from 'react-native';
-import ImageScroll from './imageScroll';
+import ImageScrollAll from './imageScrollAll';
 import TabMain from './TabMain';
 import axios from 'axios';
+import Homecarousel from './homeCarousel';
+import uuid from 'react-native-uuid';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class AllMovie extends React.Component {
   state = {
@@ -34,17 +38,34 @@ export default class AllMovie extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 0.91}}>
+      <View style={{flex: 1}}>
         <View style={styles.container}>
+         
           <View
             style={{
               width: '95%',
               height: 50,
+              marginTop: 20,
+              marginBottom: 10,
+              borderWidth:0.5,
+              borderColor:'grey',
+              borderRadius:10,
+              flexDirection:'row',
+              alignItems:'center',
 
-              marginTop: 10,
-              marginBottom: 15,
+              
             }}>
-            <TextInput
+           <Icon
+            style={{
+              marginLeft:12,
+              marginRight: 5,
+
+            }}
+            name="search"
+            size={17}
+            color="grey"
+          />
+            <TextInput 
               placeholder="search"
               onChangeText={search =>
                 this.setState({search: search}, () => {
@@ -61,23 +82,32 @@ export default class AllMovie extends React.Component {
               style={styles.inputBox}
             />
           </View>
-          <View>
+          <ScrollView>
+              
+          <Homecarousel />
+       
+          <View style={{marginTop:20}}>
             <FlatList
               data={this.state.filter}
               numColumns={2}
-              keyExtractor={item => item.imgLink}
+              keyExtractor={item => uuid.v4()}
               renderItem={({item}) => {
                 return (
-                  <ImageScroll ele={item} navigation={this.props.navigation} />
+                 
+                  <ImageScrollAll ele={item} navigation={this.props.navigation} />
                 );
               }}
             />
           </View>
+          </ScrollView>
         </View>
-
-        <View style={{flex: 0.09}}>
-          <TabMain navigation={this.props.navigation} />
+       
+        <View style={{position:'absolute',bottom:30,left:20,}}>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')} >
+         <Image  style={{width:60,height:60,borderRadius:30,zIndex:2}} source={{uri:'https://pbs.twimg.com/profile_images/1087298170722357248/aNGJWcLG_400x400.jpg'}} />
+         </TouchableOpacity>
         </View>
+        
       </View>
     );
   }

@@ -1,7 +1,26 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Input} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class Login extends Component {
+
+  async componentDidMount() {
+    try {
+      const name = await AsyncStorage.getItem('name');
+      const email = await AsyncStorage.getItem('email');
+      console.log(name)
+     if(name!==null&&email!==null){
+      this.props.navigation.navigate('Home');
+
+     }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+
+
   render() {
     return (
       <View>
