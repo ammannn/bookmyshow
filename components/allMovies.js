@@ -8,6 +8,7 @@ import {
   ScrollView,
   FlatList,
   TextInput,
+  LogBox
   
 } from 'react-native';
 import ImageScrollAll from './imageScrollAll';
@@ -24,6 +25,7 @@ export default class AllMovie extends React.Component {
   };
 
   componentDidMount() {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     axios
       .get('https://bookmyshow-clone.herokuapp.com/show')
       .then(response => {

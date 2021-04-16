@@ -96,7 +96,18 @@ export default class Detail extends React.Component {
         </ScrollView>
 
         {/*caution: do not touch here  */}
-        <View
+
+        {/* <View
+          style={{
+            flex: 0.1,
+            width: '100%',
+            height: 40,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#00000000',
+          }}> */}
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Book Now')}
           style={{
             flex: 0.1,
             width: '100%',
@@ -112,14 +123,18 @@ export default class Detail extends React.Component {
               height: '90%',
               backgroundColor: 'red',
               borderRadius: 10,
-              flexDirection:'row',
-              justifyContent:'center',
-              alignItems:'center'
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}>
-              <Text style={{color:'white',fontSize:25,fontWeight:'bold'}}>Book tickets</Text>
-            </View>
-        </View>
+            <Text style={{color: 'white', fontSize: 25, fontWeight: 'bold'}}>
+              Book tickets
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
+
+      // </View>
     );
   }
 }

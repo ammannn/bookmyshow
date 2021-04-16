@@ -13,6 +13,8 @@ import UnderConstruction from './components/underConstruction'
 import Detail from './components/detail'
 import Allmovie from './components/allMovies'
 import Profile from './components/profile'
+import Booknow from './components/booknow'
+import TheaterMain from './components/theaterMain'
 
 const Stack = createStackNavigator();
 
@@ -32,6 +34,11 @@ export class App extends Component {
         <Stack.Screen name="detail" component={Detail} />
         <Stack.Screen name="All Movies" component={Allmovie} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Book Now" component={Booknow} />
+        <Stack.Screen name="Select Seats" component={TheaterMain} />
+
+        
+
         <Stack.Screen options={{headerShown:false}} name="header" component={Header} />
 
      

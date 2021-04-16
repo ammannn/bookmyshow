@@ -10,7 +10,7 @@ export class Login extends Component {
       const email = await AsyncStorage.getItem('email');
       console.log(name)
      if(name!==null&&email!==null){
-      this.props.navigation.navigate('Home');
+      this.props.navigation.replace('Home');
 
      }
     } catch (e) {
