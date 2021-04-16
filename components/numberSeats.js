@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export class NumberSeats extends Component {
   constructor(props) {
@@ -7,9 +9,16 @@ export class NumberSeats extends Component {
 
     this.state = {
       Number: 1,
+      price:0
     };
   }
 
+    async componentDidMount(){
+      const price = await AsyncStorage.getItem('price')
+      this.setState({
+        price:price
+      })
+    }
   render() {
     const uri = [
       'https://cdn.pixabay.com/photo/2020/04/30/12/54/cycle-5112753_1280.png',
@@ -102,16 +111,16 @@ export class NumberSeats extends Component {
               borderBottomWidth: 0.4,
               borderColor: 'grey',
               width: '100%',
-              marginTop: 12,
+              marginTop: 8,
             }}></View>
           <View
             style={{
               flexDirection: 'column',
               alignItems: 'center',
-              marginTop: 5,
+              marginTop: 2,
             }}>
             <Text style={{fontSize: 16}}>Classic</Text>
-            <Text style={{fontSize: 19, fontWeight: 'bold'}}>{'₹'} 220</Text>
+            <Text style={{fontSize: 19, fontWeight: 'bold'}}>{'₹'} {this.state.price}</Text>
             <Text style={{fontSize: 12, color: '#f84464'}}>AVAILABLE</Text>
 
             <TouchableOpacity
@@ -122,7 +131,7 @@ export class NumberSeats extends Component {
                   width: '100%',
                   flexDirection: 'row',
                   justifyContent: 'center',
-                  marginTop: 15,
+                  marginTop: 2,
                 }}>
                 <View
                 

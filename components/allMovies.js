@@ -24,6 +24,8 @@ export default class AllMovie extends React.Component {
     filter: [],
   };
 
+  
+
   componentDidMount() {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     axios

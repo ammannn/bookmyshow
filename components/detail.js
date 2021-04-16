@@ -16,6 +16,7 @@ import YouMayAlsoLike from './youMayAlsoLike';
 export default class Detail extends React.Component {
   render() {
     const {data} = this.props.route.params;
+    console.log('data of show----->',data)
     const youtube = data.trailerLink.split('/');
     const youtubeLink = youtube[youtube.length - 1];
     console.log('youtube array--->', youtubeLink);
@@ -107,7 +108,7 @@ export default class Detail extends React.Component {
             alignItems: 'center',
             backgroundColor: '#00000000',
           }}> */}
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Book Now')}
+        <TouchableOpacity onPress={()=>this.props.navigation.push('Book Now',{data1:data})}
           style={{
             flex: 0.1,
             width: '100%',
